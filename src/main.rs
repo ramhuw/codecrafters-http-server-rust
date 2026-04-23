@@ -44,9 +44,21 @@ fn main() {
                     }
                 }
                 if target == Some("/") {
-                    stream.write_all(b"HTTP/1.1 200 OK\r\n\r\n").unwrap();
+                    stream
+                        .write_all(
+                            format!("{} 200 OK\r\n\r\n", version.unwrap())
+                                .as_str()
+                                .as_bytes(),
+                        )
+                        .unwrap();
                 } else {
-                    stream.write_all(b"HTTP/1.1 404 Not Found\r\n\r\n").unwrap();
+                    stream
+                        .write_all(
+                            format!("{} 404 Not Found\r\n\r\n", version.unwrap())
+                                .as_str()
+                                .as_bytes(),
+                        )
+                        .unwrap();
                 }
                 println!("accepted new connection");
             }
