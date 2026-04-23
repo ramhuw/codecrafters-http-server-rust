@@ -12,7 +12,8 @@ fn main() {
     for stream in listener.incoming() {
         match stream {
             Ok(_stream) => {
-                println!("HTTP/1.1 200 OK \r\n\r\n");
+                stream.write_all(b"HTTP/1.1 200 OK\r\n\r\n);
+                println!("accepted new connection");
             }
             Err(e) => {
                 println!("error: {}", e);
